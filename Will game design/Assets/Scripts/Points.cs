@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class Points : MonoBehaviour
 {
+    public string lvlName;
     public int totalScore;
     public Text scoreText;
 
@@ -19,6 +20,11 @@ public class Points : MonoBehaviour
     public void UpdateScoreText()
     {
         scoreText.text = totalScore.ToString();
+    }
+
+    public void NewGame(string lvlname)
+    {
+        SceneManager.LoadScene(lvlname);
     }
 
 
