@@ -8,6 +8,8 @@ public class Pineapple : MonoBehaviour
     private SpriteRenderer sprtRenderer;
     private CircleCollider2D circCollider;
     public GameObject collected;
+    public int Score;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +24,17 @@ public class Pineapple : MonoBehaviour
     }
 
 
-    void OnTriggerExit2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
         {
             sprtRenderer.enabled = false; //tira o abacaxi
             circCollider.enabled = false; //desativa o colisor do abacaxi
             collected.SetActive(true); //ativa a animação de coleta
+
+            Points.instance.totalScore += Score;
+            Points.instance.UpdateScoreText();
+
             Destroy(gameObject, 0.25f); //delay sumiço     
         }
     }
